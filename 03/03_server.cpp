@@ -32,6 +32,7 @@ static void do_something(int connfd) {
 }
 
 int main() {
+    // 소켓 file descriptor 가져오기
     int fd = socket(AF_INET, SOCK_STREAM, 0);
     if (fd < 0) {
         die("socket()");
@@ -41,7 +42,7 @@ int main() {
     int val = 1;
     setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
 
-    // bind
+    // bind, this is the syntax that deals with IPv4 addresses
     struct sockaddr_in addr = {};
     addr.sin_family = AF_INET;
     addr.sin_port = ntohs(1234);
